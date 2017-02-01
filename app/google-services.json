@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "487518347286",
+    "project_id": "firebase-seekwiki"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487518347286:android:8ec539d6f49eb0f3",
+        "android_client_info": {
+          "package_name": "com.example.marcelo.seekwiki"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwvj4UiBL8IlXR5oaiLNpsK--tdlhJCJo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-91176931-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
