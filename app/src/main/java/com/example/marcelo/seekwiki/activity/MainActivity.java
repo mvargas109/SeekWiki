@@ -1,21 +1,22 @@
 package com.example.marcelo.seekwiki.activity;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.marcelo.seekwiki.R;
 import com.crashlytics.android.Crashlytics;
+import com.example.marcelo.seekwiki.R;
+import com.example.marcelo.seekwiki.analytics.AnalyticsApplication;
 import com.example.marcelo.seekwiki.model.Wikipedia;
 import com.example.marcelo.seekwiki.rest.ApiClient;
 import com.example.marcelo.seekwiki.rest.ApiInterface;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
@@ -40,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
+
+        // Get tracker.
+        Tracker t = ((AnalyticsApplication) getApplication()).getTracker(AnalyticsApplication.TrackerName.APP_TRACKER);
+        // Enable Display Features so you can see demographics in Google Analytics
+        t.enableAdvertisingIdCollection(true);
+        // Set screen name.
+        t.setScreenName("Tela Principal");
+        // Send a screen view.
+        t.send(new HitBuilders.AppViewBuilder().build());
 
         edtPesquisa = (EditText) findViewById(R.id.edtPesquisa);
 
@@ -73,5 +83,17 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 }
